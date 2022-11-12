@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public static class Util
 {
     public static double TotalSeconds(this DateTime dateTime) => (long)(dateTime - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds * 0.001;
-
+    private static HashSet<string> bannedWordList = new HashSet<string>();
     //범위 반환.
     public static int Clamp(int value, int min, int max)
     {
@@ -90,5 +90,51 @@ public static class Util
             (3f * u * t2) * p2 +
             (t3) * p3;
         return result;
+    }
+
+    public static void RegistBannedWord(string banWord)
+    {
+        if (bannedWordList.Contains(banWord))
+            bannedWordList.Add(banWord);
+    }
+
+    public static bool IsOkText(string text)
+    {
+        var wordArray = text.Split(' ', ',', '.');
+        for (int i = 0; i < wordArray.Length; i++)
+        {
+            string word = wordArray[i];
+            for (int length = 1; length <= word.Length; length++)
+            {
+                for (int start = 0; start <= word.Length - length; start++)
+                {
+                    string sub = word.Substring(start, length);
+                    if (bannedWordList.Contains(sub))
+                        return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    public static string ReplaceBannedWord(string text)
+    {
+        var wordArray = text.Split(' ', ',', '.');
+        for (int i = 0; i < wordArray.Length; i++)
+        {
+            string word = wordArray[i];
+            for (int length = 1; length <= word.Length; length++)
+            {
+                for (int start = 0; start <= word.Length - length; start++)
+                {
+                    string sub = word.Substring(start, length);
+                    if (bannedWordList.Contains(sub))
+                        text = text.Replace(sub, "*");
+                }
+            }
+        }
+
+        return text;
     }
 }
