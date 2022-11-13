@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -136,5 +138,30 @@ public static class Util
         }
 
         return text;
+    }
+
+    // Convert an SkillData to a byte array
+    public static byte[] DataToByteArray<T>(T obj)
+    {
+        if (obj == null)
+            return null;
+
+        BinaryFormatter bf = new BinaryFormatter();
+        MemoryStream ms = new MemoryStream();
+        bf.Serialize(ms, obj);
+
+        return ms.ToArray();
+    }
+
+    // Convert a byte array to an SkillData
+    public static T ByteArrayToSkillData<T>(byte[] arrBytes)
+    {
+        MemoryStream memStream = new MemoryStream();
+        BinaryFormatter binForm = new BinaryFormatter();
+        memStream.Write(arrBytes, 0, arrBytes.Length);
+        memStream.Seek(0, SeekOrigin.Begin);
+        T obj = (T)binForm.Deserialize(memStream);
+
+        return obj;
     }
 }
