@@ -140,6 +140,15 @@ public static class Util
         return text;
     }
 
+    /// <summary>
+    /// #색상 변환
+    /// </summary>
+    public static Color TryParseHtmlString(string htmlStr)
+    {
+        ColorUtility.TryParseHtmlString(htmlStr, out Color color);
+        return color;
+    }
+
     // Convert an SkillData to a byte array
     public static byte[] DataToByteArray<T>(T obj)
     {
