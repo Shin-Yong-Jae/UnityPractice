@@ -173,4 +173,14 @@ public static class Util
 
         return obj;
     }
+
+    // Scheduler
+//    GameManager.Instance.globalTimeUtc.Subscribe(l =>
+//        {
+//            if (diceTowerPanels[0].activeSelf && !isExpire)
+//            {
+//                TimeSpan remainTime = Global.seasonEndTime.Subtract(GameManager.Instance.globalTimeUtc.Value);
+//    CheckExpireSeason(remainTime.TotalSeconds);
+//}
+//        }).AddTo(gameObject);
 }
