@@ -173,4 +173,40 @@ public static class Util
 
         return obj;
     }
+
+    // Scheduler
+    //    GameManager.Instance.globalTimeUtc.Subscribe(l =>
+    //        {
+    //            if (diceTowerPanels[0].activeSelf && !isExpire)
+    //            {
+    //                TimeSpan remainTime = Global.seasonEndTime.Subtract(GameManager.Instance.globalTimeUtc.Value);
+    //    CheckExpireSeason(remainTime.TotalSeconds);
+    //}
+    //        }).AddTo(gameObject);
+
+//    int pointerID;
+
+
+
+//#if UNITY_EDITOR
+
+//    pointerID = -1; //PC나 유니티 상에서는 -1
+
+//#elif UNITY_IOS || UNITY_IPHONE
+
+//        pointerID = 0;  // 휴대폰이나 이외에서 터치 상에서는 0 
+
+//#endif
+
+ 
+
+//if (EventSystem.current.IsPointerOverGameObject(pointerID) == false)
+
+//{
+
+//    //UI 상에서 클릭하지 않았을 때, 함수
+
+//}
+
+ 
 }
