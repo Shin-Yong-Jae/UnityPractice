@@ -96,5 +96,6 @@ public class PopupDialogTwoButton : BasePopup
 
         base.Close();
     }
+
     #endregion Main Methods
 }
