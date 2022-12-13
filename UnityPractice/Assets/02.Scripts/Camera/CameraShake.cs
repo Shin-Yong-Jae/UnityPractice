@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class CameraShake : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    //카메라 흔들기
+    public float ShakeAmount;
+    float ShakeTime;
+    Vector3 initialPosition;
+    public void VibrateForTime(float time)
     {
-        
+        ShakeTime = time;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        initialPosition = GameObject.FindWithTag("MainCamera").transform.position;//카메라 흔들릴 위치값
+        if (ShakeTime > 0)
+        {
+            transform.position = Random.insideUnitSphere * ShakeAmount + initialPosition;
+            ShakeTime -= Time.deltaTime;
+        }
+        else
+        {
+            ShakeTime = 0.0f;
+            transform.position = initialPosition;
+        }
     }
 }
