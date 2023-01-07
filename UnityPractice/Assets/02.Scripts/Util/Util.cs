@@ -141,6 +141,22 @@ public static class Util
     }
 
     /// <summary>
+    /// 프로그레스 value 반환
+    /// </summary>
+    public static float GetProgressValue(float currentValue, float maxValue)
+    {
+        return currentValue / maxValue;
+    }
+
+    /// <summary>
+    /// 인덱스로 enum 타입을 가져오는 함수
+    /// </summary>
+    public static T GetEnumValueByIndex<T>(int index) where T : Enum
+    {
+        return (T)Enum.GetValues(typeof(T)).GetValue(index);
+    }
+
+    /// <summary>
     /// #색상 변환
     /// </summary>
     public static Color TryParseHtmlString(string htmlStr)
